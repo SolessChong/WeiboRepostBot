@@ -1,0 +1,7 @@
+---
+name: chongswbbot
+version: 1
+cron:
+	- description: repost tech-related posts
+		url: repost-tech.php
+		schedule: every 3 mins
