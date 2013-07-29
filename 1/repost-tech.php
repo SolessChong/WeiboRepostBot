@@ -27,12 +27,15 @@ if ($msg === false || $msg === null){
 	return false;
 } 
 $max_post_id = intval(memcache_get($mem, 'cur_repost_id'));
-	// list interesting words
-$interest_str = array("技术","科技","IT","计算机","科学","高新产业","互联网","网络");
+	// define a list interesting words
+$interest_str = unserialize(HIT_WORDS);
+var_dump(count($interest_str));
 foreach ($msg as $entry){
+	echo "<br>";
 	$hitcnt = 0;
 	foreach($interest_str as $str){
-		$hitcnt = $hitcnt + (substr_count($entry['text'], $str) > 0);
+		if (substr_count($entry['text'], $str) > 0)
+			$hitcnt = $hitcnt + 1;
 	}
 	echo $entry['id'];
 	var_dump($hitcnt);
